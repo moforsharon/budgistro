@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 import App from './App';
-import './index.css';
+import './src/index.css';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

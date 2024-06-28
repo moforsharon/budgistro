@@ -6,6 +6,11 @@ const path = require('path');
 module.exports = async function(env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
 
+  // Ensure only one instance of HtmlWebpackPlugin
+  config.plugins = config.plugins.filter(
+    plugin => !(plugin instanceof HtmlWebpackPlugin)
+  );
+
   config.plugins.push(
     new HtmlWebpackPlugin({
       template: './src/index.html',
