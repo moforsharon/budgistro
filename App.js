@@ -1,15 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import './index.css';
+import './src/index.css';
 import MyComponent from './src/components/LandingPage';
 import { NativeBaseProvider } from 'native-base';
-
+import DeviceDetection from './src/components/DeviceDetection';
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <MyComponent/>
-      <StatusBar style="auto" />
+      <DeviceDetection>
+        <MyComponent/>
+        <StatusBar style="auto" />
+      </DeviceDetection>
     </NativeBaseProvider>
   );
 }
