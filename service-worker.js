@@ -1,13 +1,16 @@
 // service-worker.js
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
-      caches.open('my-cache').then(cache => {
+      caches.open('my-cache').then((cache) => {
         return cache.addAll([
           '/',
-          '/index.html',
-          '/static/js/bundle.js',
-          // add other assets to cache
-        ]);
+          './src/index.html',
+          './src/index.css',
+          '/index.js',
+          // ... other resources
+        ]).catch((error) => {
+          console.error('Failed to cache resources:', error);
+        });
       })
     );
   });
