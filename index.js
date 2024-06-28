@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 import App from './App';
-import './src/index.css';
+import './index.css';
 
 let deferredPrompt;
 
