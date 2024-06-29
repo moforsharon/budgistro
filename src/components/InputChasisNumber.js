@@ -22,7 +22,7 @@ const InputChasisNumberPage = ({ navigation }) => {
             style={styles.chasisImage}
             resizeMode={'contain'}
           />
-          <Text  mt={0} mb={8} px={2} textAlign="center" fontWeight={"semibold"} color={"#696969"} fontSize={"16px"}>
+          <Text  mt={0} mb={8} px={2} textAlign="center" fontWeight={"semibold"} color={"#696969"} fontSize={"14px"}>
             Veuillez saisir l'informations de votre véhicule
           </Text>
           <Box width={wp('90%')} mb={4} h={'20%'} mt={8}>
@@ -34,7 +34,7 @@ const InputChasisNumberPage = ({ navigation }) => {
             />
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
+          <Button style={styles.button} size="lg" colorScheme="blue" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
