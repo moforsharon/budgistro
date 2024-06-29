@@ -31,9 +31,20 @@ const WelcomePage = () => {
             </ImageBackground>
           </VStack>
         </Center>
-        <Box style={styles.buttonContainer} p={4} bg="white" >
+        <Box style={styles.buttonContainer} p={4} bg="white">
           <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}>
-            Vérifier mon assurance
+            <HStack alignItems="center" w={"full"} justifyContent={"space-between"}>
+              <Box flex={8} alignItems="flex-start">
+                <Image
+                  source={require('../../assets/ID Verified.png')}
+                  style={styles.buttonIcon}
+                  alt="ID Verified"
+                />
+              </Box>
+              <Box  alignItems="center" ml={"46%"} w={"full"}>
+                <Text style={styles.buttonText}>Vérifier mon assurance</Text>
+              </Box>
+            </HStack>
           </Button>
         </Box>
       </VStack>
@@ -61,11 +72,11 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     height: hp('10%'),
-    marginTop: "50%",
+    marginTop: "40%",
     marginLeft: "110px"
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'black', // Make sure text is readable on the background image
@@ -73,12 +84,27 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: wp('100%'),
     height: hp('5%'),
+    justifyContent: 'center',
+    alignItems: 'center',
     position: "relative",
   },
   button: {
     width: wp('90%'),
     position: "absolute",
     bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-start', // Align items to start
+    alignItems: 'center',
+  },
+  buttonIcon: {
+    width: 24,
+    height: 24,
+    marginRight: "45%",
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    color: 'white',
+    
   },
 });
 
