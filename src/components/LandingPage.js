@@ -2,8 +2,9 @@ import React from 'react';
 import { Image, ImageBackground, StyleSheet } from 'react-native';
 import { Box, Text, Button, VStack, Center, HStack } from 'native-base';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 
-const WelcomePage = () => {
+const WelcomePage = ({ navigation }) => {
   return (
     <Box flex={1} bg="white">
       <VStack flex={1}>
@@ -32,7 +33,7 @@ const WelcomePage = () => {
           </VStack>
         </Center>
         <Box style={styles.buttonContainer} p={4} bg="white">
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}>
+          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('InputChasisNumber')}>
             <HStack alignItems="center" w={"full"} justifyContent={"space-between"}>
               <Box flex={8} alignItems="flex-start">
                 <Image
