@@ -61,6 +61,7 @@ import { NativeBaseProvider } from 'native-base';
 import MyComponent from './src/components/LandingPage';
 import InputChasisNumberPage from './src/components/InputChasisNumber';
 import DeviceDetection from './src/components/DeviceDetection';
+import LoadingScreen from './src/components/LoadingPage';
 
 const Stack = createStackNavigator();
 
@@ -79,6 +80,7 @@ export default function App() {
       <DeviceDetection>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Loading" component={LoadingScreen} />
             <Stack.Screen name="Landing" component={MyComponent} />
             <Stack.Screen name="InputChasisNumber" component={InputChasisNumberPage} />
           </Stack.Navigator>

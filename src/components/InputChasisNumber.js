@@ -5,8 +5,7 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const InputChasisNumberPage = () => {
-  const navigation = useNavigation();
+const InputChasisNumberPage = ({ navigation }) => {
 
   return (
     <Box flex={1} bg="white">
@@ -35,7 +34,7 @@ const InputChasisNumberPage = () => {
             />
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('InputChasisNumber')}>
+          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
