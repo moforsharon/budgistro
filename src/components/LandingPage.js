@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   imageBackground: {
-    height: hp('10%'),
-    marginTop: "40%",
+    height: hp('14%'),
+    marginTop: "37%",
     marginLeft: "110px"
   },
   text: {
