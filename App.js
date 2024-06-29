@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import MyComponent from './src/components/LandingPage';
@@ -6,6 +8,15 @@ import DeviceDetection from './src/components/DeviceDetection';
 import { Platform } from 'react-native';
 
 export default function App() {
+
+  useEffect(() => {
+    const lockOrientation = async () => {
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    };
+
+    lockOrientation();
+  }, []);
+
   return (
     <NativeBaseProvider>
       <DeviceDetection>
