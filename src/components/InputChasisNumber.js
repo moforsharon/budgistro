@@ -13,7 +13,7 @@ const InputChasisNumberPage = () => {
       <VStack flex={1} space={4} p={4}>
         <Box style={styles.header}>
           <Button onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Icon name="arrow-left" style={styles.backButtonText} onPress={() => navigation.goBack()}/>
+            <Icon name="arrow-left" style={styles.backButtonText} onPress={() => navigation.goBack()} resizeMode={'contain'}/>
           </Button>
         </Box>
         <Center flex={1} px={4}>
@@ -26,7 +26,7 @@ const InputChasisNumberPage = () => {
           <Text  mt={0} mb={8} px={2} textAlign="center" fontWeight={"semibold"} color={"#696969"} fontSize={"16px"}>
             Veuillez saisir l'informations de votre véhicule
           </Text>
-          <Box width={wp('90%')} mb={4} h={'30%'} mt={8}>
+          <Box width={wp('90%')} mb={4} h={'20%'} mt={8}>
             <Text fontWeight={"bold"}  fontSize={"15px"} mb={1}>
               Numéro d'immatriculation ou numéro de châssis
             </Text>
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   header: {
     width: wp('100%'),
     alignItems: 'flex-start',
+    height: hp('6%'),
     padding: 10,
   },
   backButton: {
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: wp('100%'),
-    height: hp('17%'),
+    height: hp('15%'),
     justifyContent: 'center',
     alignItems: 'center',
     position: "relative",
