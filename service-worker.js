@@ -5,7 +5,6 @@ self.addEventListener('install', (event) => {
         return cache.addAll([
           '/',
           '/index.html',
-          './src/index.css',
           '/index.js',
           // ... other resources
         ]).catch((error) => {

@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import './src/index.css';
 import MyComponent from './src/components/LandingPage';
 import { NativeBaseProvider } from 'native-base';
 import DeviceDetection from './src/components/DeviceDetection';
+import { Platform } from 'react-native';
 
 export default function App() {
   return (
@@ -25,12 +25,15 @@ const styles = StyleSheet.create({
   },
 });
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then(registration => {
-      console.log('SW registered: ', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
+if (Platform.OS === 'web') {
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        console.log('SW registered: ', registration);
+      }).catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
     });
-  });
+  }
 }

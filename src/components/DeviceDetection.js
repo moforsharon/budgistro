@@ -8,7 +8,7 @@ const DeviceDetection = ({ children }) => {
     return (
       <div style={{ textAlign: 'center', padding: '50px' }}>
         <h1>Mobile Only</h1>
-        <p>This application is only available on mobile devices.</p>
+        <p>Please reopen the link on a phone browser.</p>
       </div>
     );
   }
