@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { BarIndicator } from 'react-native-indicators';
+import { BarIndicator, BallIndicator } from 'react-native-indicators';
 import { Box, VStack, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -11,8 +11,8 @@ const LoadingScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('InputChasisNumber'); // Replace with your next screen name
-    }, 30000); // Simulate loading for 3 seconds
+      navigation.navigate('VehicleInfo');
+    }, 3000);
 
     return () => clearTimeout(timer); // Cleanup the timer
   }, [navigation]);
@@ -28,7 +28,7 @@ const LoadingScreen = () => {
         <Box justifyContent={'center'} alignItems={'center'} style={styles.container}>
             <Box justifyContent={'center'} alignItems={'center'} style={styles.centeredContainer}>
                 <Box justifyContent={'center'} alignItems={'center'} >
-                    <BarIndicator color="#D3D3D3" style={styles.indicator}/>
+                    <Image source={require('../../assets/progressIndicator.gif')} style={styles.indicator} />
                     <Text style={styles.text}>Merci de patienter.</Text>
                 </Box>
             </Box>
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
     top: '40%'
   },
   indicator: {
-    width: wp('10%'), // Adjust the width as needed
-    height: hp('10%'), // Adjust the height as needed
+    width: wp('18%'), 
+    height: hp('18%'), 
   },
   text: {
-    marginTop: 6,
-    fontSize: 16,
+    marginTop: 0,
+    fontSize: 14,
     color: '#000',
     fontWeight: '700'
   },

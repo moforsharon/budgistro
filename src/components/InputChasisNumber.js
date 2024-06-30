@@ -9,7 +9,7 @@ const InputChasisNumberPage = ({ navigation }) => {
 
   return (
     <Box flex={1} bg="white">
-      <VStack flex={1} space={4} p={4}>
+      <VStack flex={1} space={4} px={4}>
         <Box style={styles.header}>
           <Button onPress={() => navigation.goBack()} style={styles.backButton}>
             <Icon name="arrow-left" style={styles.backButtonText} onPress={() => navigation.goBack()} resizeMode={'contain'}/>
@@ -34,7 +34,7 @@ const InputChasisNumberPage = ({ navigation }) => {
             />
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="blue" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
+          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
