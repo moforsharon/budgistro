@@ -80,7 +80,7 @@ export default function App() {
     <NativeBaseProvider>
       <DeviceDetection>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="VehicleInfo" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="Landing" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Loading" component={LoadingScreen} />
             <Stack.Screen name="Landing" component={MyComponent} />
             <Stack.Screen name="InputChasisNumber" component={InputChasisNumberPage} />

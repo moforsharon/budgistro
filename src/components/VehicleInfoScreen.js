@@ -5,9 +5,26 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const VehicleInfoScreen = () => {
+    const insuranceData = {
+        'Numéro d\'immatriculation': 'OU 835 AH',
+        'Numéro de châssis': 'ABC123456789',
+        'Date d\'effet': '01/04/2024',
+        'Date d\'expiration': '01/04/2025',
+        'Durée': '365 Jours',
+        'Nom de l\'assuré': 'Jean Dupont',
+        'Adresse': 'Rue de l\'Assurance, Yaoundé',
+        'Puissance': '9 CV',
+        'Nombre de places dans le véhicule': '5',
+        'Zone de circulation': 'Zone A',
+        'Contrat': 'Assurances tous risques',
+        'Numéro de police': 'POL23456',
+        'Date d\'émission': '15/03/2024',
+        'DTA payée?': 'Oui',
+        'Validité de DTA': '2024',
+        };
   return (
     <View>
-    <Box flex={1} bg="#D5D5D5" h={hp('100%')}>
+    <Box flex={1} bg="#D3D3D3" h={hp('100%')}>
       <Box style={styles.header}>
         <Button onPress={() => navigation.goBack()} style={styles.backButton}>
           <Icon name="arrow-left" style={styles.backButtonText} />
@@ -20,24 +37,19 @@ const VehicleInfoScreen = () => {
             <Image source={require('../../assets/userManual.png')} style={styles.sectionIcon} />
           </Box>
           <Box justifyContent={'center'} alignItems={'center'}>
-            <Divider bg="#9F57C0" width={wp('60%')} height={'2px'}/>
+            <Divider bg="#9F57C0" width={wp('70%')} height={'2px'}/>
           </Box>
-          <VStack space={2} p={4}>
-            {renderRow('Numéro d\'immatriculation', 'OU 835 AH')}
-            {renderRow('Numéro de châssis', 'ABC123456789')}
-            {renderRow('Date d\'effet', '01/04/2024')}
-            {renderRow('Date d\'expiration', '01/04/2025')}
-            {renderRow('Durée', '365 Jours')}
-            {renderRow('Nom de l\'assuré', 'Jean Dupont')}
-            {renderRow('Adresse', 'Rue de l\'Assurance, Yaoundé')}
-            {renderRow('Puissance', '9 CV')}
-            {renderRow('Nombre de places dans le véhicule', '5')}
-            {renderRow('Zone de circulation', 'Zone A')}
-            {renderRow('Contrat', 'Assurances tous risques')}
-            {renderRow('Numéro de police', 'POL23456')}
-            {renderRow('Date d\'émission', '15/03/2024')}
-            {renderRow('DTA payée?', 'Oui')}
-            {renderRow('Validité de DTA', '2024')}
+          <Text marginLeft={wp('7%')} fontSize={"lg"} py={2} color={"#9F57C0"} fontWeight={'bold'}>Assurance</Text>
+          <VStack space={2} p={4} borderColor={"#9F57C0"} borderWidth={0.5}>
+            {Object.entries(insuranceData).map(([label, value], index) => (
+              <Box key={index}>
+                <HStack justifyContent="space-between" alignItems="center" py={1}>
+                  <Text style={styles.label}>{label}</Text>
+                  <Text style={styles.value}>{value}</Text>
+                </HStack>
+                {index < Object.entries(insuranceData).length - 1 && <Divider bg="#9F57C0"  height={'0.5px'}/>}
+              </Box>
+            ))}
           </VStack>
         </Box>
         {/* Add other sections in a similar way */}
