@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, TextInput } from 'react-native';
 import { Box, Text, Button, VStack, Center, HStack } from 'native-base';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { fetchVehicleStatus } from '../utilities/api'; // Import the fetch function
 
-const InputChasisNumberPage = ({ navigation }) => {
+const InputChasisNumberPage = () => {
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { errorMessage } = route.params || {}; // Retrieve error message from route params
     const [input, setInput] = useState('');
 
     const handleSubmit = async () => {
@@ -44,6 +47,7 @@ const InputChasisNumberPage = ({ navigation }) => {
               value={input}
               onChangeText={setInput}
             />
+            {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
           </Box>
           <Box style={styles.buttonContainer} px={4}>
           <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
@@ -82,6 +86,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5,
      fontFamily: 'MerriweatherSans'
+  },
+  errorText: {
+    color: 'red',
+    marginTop: 4,
   },
   buttonContainer: {
     width: wp('100%'),

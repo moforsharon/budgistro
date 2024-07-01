@@ -13,21 +13,25 @@ const LoadingScreen = () => {
     const { data } = route.params;
   
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const result = await fetchVehicleStatus(data);
-          const mostRecentStatus = result[0].StatusEnCirculation.reduce((prev, current) => {
-            return new Date(prev.datesais) > new Date(current.datesais) ? prev : current;
-          });
-          navigation.navigate('VehicleInfo', { mostRecentStatus });
-        } catch (error) {
-          Alert.alert('Error', error.message);
-          navigation.goBack();
-        }
-      };
+        const fetchData = async () => {
+          try {
+            const result = await fetchVehicleStatus(data);
+            if (result[0].StatusEnCirculation === "Le véhicule n'existe pas") {
+              navigation.navigate('InputChasisNumber', { errorMessage: "Le véhicule n'existe pas" });
+            } else {
+              const mostRecentStatus = result[0].StatusEnCirculation.reduce((prev, current) => {
+                return new Date(prev.datesais) > new Date(current.datesais) ? prev : current;
+              });
+              navigation.navigate('VehicleInfo', { mostRecentStatus });
+            }
+          } catch (error) {
+            console.log(`The error is : ${error.message}`);
+            navigation.navigate('InputChasisNumber', { errorMessage: "Échec de l'envoi de la demande. Veuillez réessayer." });
+          }
+        };
   
-      fetchData();
-    }, [data, navigation]);
+        fetchData();
+      }, [data, navigation]);
 
   return (
     <Box flex={1} bg="white">
