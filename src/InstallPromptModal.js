@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     width: 300,
     padding: 20,
     backgroundColor: 'white',
+    justifyContent: 'center',
     borderRadius: 10,
     alignItems: 'center'
   },
@@ -70,11 +71,11 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   text: {
-    fontSize: 16,
+    fontSize: 12,
     marginBottom: 14
   },
   instructions: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 20,
     textAlign: 'center'
   },
