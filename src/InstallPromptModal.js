@@ -25,6 +25,7 @@ export const InstallPWA = () => {
             source={{ uri: '../assets/iconImage.png' }} // Replace with your actual icon path
           />
           <Text style={styles.title}>Install App</Text>
+          <Text style={styles.text}>Install this application on your Home screen for quick and easy access when you're on the go.</Text>
           {iosInstallPrompt && (
             <Text style={styles.instructions}>
               Tap <Image style={styles.shareIcon} source={{ uri: '../assets/upload-100.png' }} /> then "Add to Home Screen"
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10
+  },
+  text: {
+    fontSize: 16,
+    marginBottom: 14
   },
   instructions: {
     fontSize: 16,
