@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, StyleSheet, TextInput } from 'react-native';
 import { Box, Text, Button, VStack, Center, HStack } from 'native-base';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -11,6 +11,20 @@ const InputChasisNumberPage = () => {
     const route = useRoute();
     const { errorMessage } = route.params || {}; // Retrieve error message from route params
     const [input, setInput] = useState('');
+      // State to track error message visibility
+    const [isErrorVisible, setIsErrorVisible] = useState(true);
+
+    // Effect to handle error message timeout
+    useEffect(() => {
+        if (errorMessage) {
+        const timeoutId = setTimeout(() => {
+            setIsErrorVisible(false);
+        }, 5000); // Set timeout for 5 seconds
+
+        // Cleanup function to clear timeout when component unmounts
+        return () => clearTimeout(timeoutId);
+        }
+    }, [errorMessage]);
 
     const handleSubmit = async () => {
       try {
@@ -47,10 +61,10 @@ const InputChasisNumberPage = () => {
               value={input}
               onChangeText={setInput}
             />
-            {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
+            {isErrorVisible && errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="#1CA7AE" _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
+          <Button style={styles.button} size="lg" backgroundColor={'#1CA7AE'} _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
@@ -99,7 +113,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   button: {
-    width: wp('90%'),
+    width: wp('92%'),
     position: "absolute",
     bottom: 0,
   },
