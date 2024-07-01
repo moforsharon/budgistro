@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { BarIndicator, BallIndicator } from 'react-native-indicators';
@@ -11,13 +11,15 @@ const LoadingScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const { data } = route.params;
+    const [errMessage, setErrMessage] = useState('')
   
     useEffect(() => {
         const fetchData = async () => {
           try {
             const result = await fetchVehicleStatus(data);
             if (result[0].StatusEnCirculation === "Le véhicule n'existe pas") {
-              navigation.navigate('InputChasisNumber', { errorMessage: "Le véhicule n'existe pas" });
+                setErrMessage("Le véhicule n'existe pas")
+              navigation.navigate('InputChasisNumber', { errorMessage: errMessage });
             } else {
               const mostRecentStatus = result[0].StatusEnCirculation.reduce((prev, current) => {
                 return new Date(prev.datesais) > new Date(current.datesais) ? prev : current;
@@ -26,12 +28,13 @@ const LoadingScreen = () => {
             }
           } catch (error) {
             console.log(`The error is : ${error.message}`);
-            navigation.navigate('InputChasisNumber', { errorMessage: "Échec de l'envoi de la demande. Veuillez réessayer." });
+            setErrMessage("Échec de l'envoi de la demande. Veuillez réessayer.")
+            navigation.navigate('InputChasisNumber', { errorMessage: errMessage });
           }
         };
   
         fetchData();
-      }, [data, navigation]);
+      }, [data, navigation, errMessage]);
 
   return (
     <Box flex={1} bg="white">

@@ -13,14 +13,19 @@ const InputChasisNumberPage = () => {
     const [input, setInput] = useState('');
     const [inputError, setInputError] = useState('');
       // State to track error message visibility
-    const [isErrorVisible, setIsErrorVisible] = useState(true);
-    const [isInputErrorVisible, setIsInputErrorVisible] = useState(true);
+    const [isErrorVisible, setIsErrorVisible] = useState(false);
+    const [isInputErrorVisible, setIsInputErrorVisible] = useState(false);
+    const [errMessage, setErrMessage] = useState(errorMessage);
 
     // Effect to handle error message timeout
     useEffect(() => {
         if (errorMessage) {
+            console.log(errorMessage);
+            setErrMessage(errorMessage)
+            setIsErrorVisible(true);  
         const timeoutId = setTimeout(() => {
             setIsErrorVisible(false);
+            setErrMessage('')
         }, 5000); // Set timeout for 5 seconds
 
         // Cleanup function to clear timeout when component unmounts
@@ -81,8 +86,8 @@ const InputChasisNumberPage = () => {
               textContentType="none" 
               importantForAccessibility="no" 
             />
-            {isErrorVisible && errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
-            {isInputErrorVisible && inputError && <Text style={styles.errorText}>{inputError}</Text>}
+            {errMessage && <Text style={styles.errorText}>{errMessage}</Text>}
+            {inputError && <Text style={styles.errorText}>{inputError}</Text>}
 
           </Box>
           <Box style={styles.buttonContainer} px={4}>
