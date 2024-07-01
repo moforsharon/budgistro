@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "budgistro",
-    "slug": "budgistro",
+    "name": "Budgistro",
+    "slug": "Budgistro",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/iconImage.png",

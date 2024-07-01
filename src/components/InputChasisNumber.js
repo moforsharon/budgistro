@@ -75,6 +75,9 @@ const InputChasisNumberPage = () => {
               style={styles.input}
               value={input}
               onChangeText={handleInputChange}
+              keyboardType="default" 
+              textContentType="none" 
+              importantForAccessibility="no" 
             />
             {isErrorVisible && errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
             {isInputErrorVisible && inputError && <Text style={styles.errorText}>{inputError}</Text>}
