@@ -18,7 +18,7 @@ module.exports = async function(env, argv) {
       inject: 'body',
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-        description: 'A budget management app',
+        description: 'Budgistro - Insurance',
       },
       link: [
         { rel: 'manifest', href: '/manifest.json' },
