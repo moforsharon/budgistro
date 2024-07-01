@@ -11,8 +11,10 @@ const InputChasisNumberPage = () => {
     const route = useRoute();
     const { errorMessage } = route.params || {}; // Retrieve error message from route params
     const [input, setInput] = useState('');
+    const [inputError, setInputError] = useState('');
       // State to track error message visibility
     const [isErrorVisible, setIsErrorVisible] = useState(true);
+    const [isInputErrorVisible, setIsInputErrorVisible] = useState(true);
 
     // Effect to handle error message timeout
     useEffect(() => {
@@ -26,14 +28,27 @@ const InputChasisNumberPage = () => {
         }
     }, [errorMessage]);
 
-    const handleSubmit = async () => {
-      try {
-        const data = [{ numeroDImmatriculation: input}];
-        navigation.navigate('Loading', { data });
-      } catch (error) {
-        Alert.alert('Error', error.message);
-      }
+    const handleInputChange = (text) => {
+        setInput(text);
+        setIsInputErrorVisible(false);
+        setInputError('');
     };
+
+    const handleSubmit = async () => {
+        if (!input) {
+          // Display error message if input is empty
+          setInputError("Veuillez remplir le champ de saisie.")
+          setIsInputErrorVisible(true);
+          return; // Prevent form submission
+        }
+    
+        try {
+          const data = [{ numeroDImmatriculation: input }];
+          navigation.navigate('Loading', { data });
+        } catch (error) {
+          Alert.alert('Error', error.message);
+        }
+      };
   return (
     <Box flex={1} bg="white">
       <VStack flex={1} space={4} px={4}>
@@ -59,9 +74,11 @@ const InputChasisNumberPage = () => {
             <TextInput
               style={styles.input}
               value={input}
-              onChangeText={setInput}
+              onChangeText={handleInputChange}
             />
             {isErrorVisible && errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
+            {isInputErrorVisible && inputError && <Text style={styles.errorText}>{inputError}</Text>}
+
           </Box>
           <Box style={styles.buttonContainer} px={4}>
           <Button style={styles.button} size="lg" backgroundColor={'#1CA7AE'} _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
