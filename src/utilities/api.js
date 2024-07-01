@@ -4,13 +4,13 @@ export const fetchVehicleStatus = async (data) => {
   try {
     const { numeroDeChassis, attestation, numeroDImmatriculation } = data;
 
-    const url = `http://41.211.108.123:4053/apiasac/pooltpv/api/save/getStatutVehiculeEncirculationApp?numeroDeChassis=${numeroDeChassis}&attestation=${attestation}&numeroDImmatriculation=${numeroDImmatriculation}`;
+    const url = `https://proxy-server-rouge-eta.vercel.app/api/proxy??numeroDeChassis=${numeroDeChassis}&attestation=${attestation}&numeroDImmatriculation=${numeroDImmatriculation}`;
 
     console.log('Sending request to URL:', url);
 
     const response = await axios({
       method: 'get',
-      url: `https://cors-anywhere.herokuapp.com/${url}`,
+      url: url,
       headers: {
         'Content-Type': 'application/json',
       },

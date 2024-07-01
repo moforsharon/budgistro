@@ -24,7 +24,7 @@ export const InstallPWA = () => {
             style={styles.icon}
             source={{ uri: '../assets/iconImage.png' }} // Replace with your actual icon path
           />
-          <Text style={styles.title}>Install App</Text>
+          <Text style={styles.title}>Installer l'application</Text>
           <Text style={styles.text}>Install this application on your Home screen for quick and easy access when you're on the go.</Text>
           {iosInstallPrompt && (
             <Text style={styles.instructions}>
