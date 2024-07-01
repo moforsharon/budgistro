@@ -1,21 +1,33 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, Image, Alert } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { BarIndicator, BallIndicator } from 'react-native-indicators';
 import { Box, VStack, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { fetchVehicleStatus } from '../utilities/api';
 
 const LoadingScreen = () => {
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate('VehicleInfo');
-    }, 3000);
-
-    return () => clearTimeout(timer); // Cleanup the timer
-  }, [navigation]);
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { data } = route.params;
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const result = await fetchVehicleStatus(data);
+          const mostRecentStatus = result[0].StatusEnCirculation.reduce((prev, current) => {
+            return new Date(prev.datesais) > new Date(current.datesais) ? prev : current;
+          });
+          navigation.navigate('VehicleInfo', { mostRecentStatus });
+        } catch (error) {
+          Alert.alert('Error', error.message);
+          navigation.goBack();
+        }
+      };
+  
+      fetchData();
+    }, [data, navigation]);
 
   return (
     <Box flex={1} bg="white">

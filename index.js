@@ -1,6 +1,7 @@
 import { registerRootComponent } from 'expo';
 import App from './App';
 import { Platform } from 'react-native';
+import './global.css';
 
 if (Platform.OS === 'web') {
 

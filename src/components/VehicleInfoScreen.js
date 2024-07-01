@@ -4,29 +4,30 @@ import { Box, Text, VStack, HStack, Divider, Button, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-const VehicleInfoScreen = () => {
+const VehicleInfoScreen = ({ route }) => {
+    const { mostRecentStatus } = route.params;
     const insuranceData = {
-        'Numéro d\'immatriculation': 'OU 835 AH',
-        'Numéro de châssis': 'ABC123456789',
-        'Date d\'effet': '01/04/2024',
-        'Date d\'expiration': '01/04/2025',
-        'Durée': '365 Jours',
-        'Nom de l\'assuré': 'Jean Dupont',
-        'Adresse': 'Rue de l\'Assurance, Yaoundé',
-        'Puissance': '9 CV',
-        'Nombre de places dans le véhicule': '5',
-        'Zone de circulation': 'Zone A',
-        'Contrat': 'Assurances tous risques',
-        'Numéro de police': 'POL23456',
-        'Date d\'émission': '15/03/2024',
-        'DTA payée?': 'Oui',
-        'Validité de DTA': '2024',
-        };
+        'Numéro d\'immatriculation': mostRecentStatus.numerodimmatriculation,
+        'Numéro de châssis': mostRecentStatus.numerodechassis,
+        'Date d\'effet': mostRecentStatus.datedeffet,
+        'Date d\'expiration': mostRecentStatus.datedexpiration,
+        'Durée': mostRecentStatus.dureedassurance,
+        'Nom de l\'assuré': mostRecentStatus.nomdelassure,
+        'Adresse': mostRecentStatus.adresseassure,
+        'Puissance': `${mostRecentStatus.puissance} CV`,
+        'Nombre de places dans le véhicule': mostRecentStatus.nombredeplaces,
+        'Zone de circulation': mostRecentStatus.zone_circulation,
+        'Contrat': mostRecentStatus.statutdassurance,
+        'Numéro de police': mostRecentStatus.numero_police,
+        'Date d\'émission': mostRecentStatus.datesais,
+        'DTA payée?': mostRecentStatus.droit_timbre > 0 ? 'Oui' : 'Non',
+        'Validité de DTA': mostRecentStatus.datedexpiration,
+      };
   return (
     <View>
     <Box flex={1} bg="#D3D3D3" h={hp('100%')}>
       <Box style={styles.header}>
-        <Button onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Button onPress={() => navigation.navigate('InputChasisNumber')} style={styles.backButton}>
           <Icon name="arrow-left" style={styles.backButtonText} />
         </Button>
         <Text style={styles.headerText}>Informations du véhicule</Text>
@@ -69,7 +70,7 @@ const renderRow = (label, value) => (
 const styles = StyleSheet.create({
   header: {
     width: wp('100%'),
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 10,
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // for ios shadow
     shadowOpacity: 0.2, // for ios shadow
     shadowRadius: 2, // for ios shadow
+    fontFamily: 'MerriweatherSans'
   },
   backButton: {
     backgroundColor: 'transparent',
@@ -88,10 +90,11 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   headerText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center',
+    fontFamily: 'MerriweatherSans'
   },
   contentContainer: {
     padding: 16,
@@ -122,15 +125,18 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'MerriweatherSans'
   },
   label: {
     fontSize: 14,
     color: '#555',
+    fontFamily: 'MerriweatherSans'
   },
   value: {
     fontSize: 14,
     fontWeight: 'bold',
     color: '#000',
+    fontFamily: 'MerriweatherSans'
   },
 });
 

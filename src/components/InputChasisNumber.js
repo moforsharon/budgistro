@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, TextInput } from 'react-native';
 import { Box, Text, Button, VStack, Center, HStack } from 'native-base';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { fetchVehicleStatus } from '../utilities/api'; // Import the fetch function
 
 const InputChasisNumberPage = ({ navigation }) => {
+    const [input, setInput] = useState('');
 
+    const handleSubmit = async () => {
+      try {
+        const data = [{ numeroDImmatriculation: input}];
+        navigation.navigate('Loading', { data });
+      } catch (error) {
+        Alert.alert('Error', error.message);
+      }
+    };
   return (
     <Box flex={1} bg="white">
       <VStack flex={1} space={4} px={4}>
@@ -31,10 +41,12 @@ const InputChasisNumberPage = ({ navigation }) => {
             </Text>
             <TextInput
               style={styles.input}
+              value={input}
+              onChangeText={setInput}
             />
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('Loading')}>
+          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
@@ -57,21 +69,23 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 20,
     color: 'black',
+    fontFamily: 'MerriweatherSans'
   },
   chasisImage: {
     width: wp('90%'),
-    height: hp('40%'), // Adjust the height as needed
+    height: hp('45%'), // Adjust the height as needed
   },
   input: {
-    height: 60,
+    height: 50,
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 5,
+     fontFamily: 'MerriweatherSans'
   },
   buttonContainer: {
     width: wp('100%'),
-    height: hp('15%'),
+    height: hp('20%'),
     justifyContent: 'center',
     alignItems: 'center',
     position: "relative",
@@ -84,6 +98,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
     color: 'white',
+    fontFamily: 'MerriweatherSans'
     
   },
 });

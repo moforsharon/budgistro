@@ -78,9 +78,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 800,
     textAlign: 'center',
-    color: 'black', // Make sure text is readable on the background image
+    color: 'black', 
+    fontFamily: 'MerriweatherSans',
   },
   buttonContainer: {
     width: wp('100%'),
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
     color: 'white',
+    fontFamily: 'MerriweatherSans'
     
   },
 });
