@@ -4,7 +4,7 @@
     "slug": "budgistro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/splashImage.png",
+    "icon": "./assets/iconImage.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splashImage.png",
