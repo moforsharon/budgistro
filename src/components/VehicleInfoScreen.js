@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Image } from 'react-native';
 import { Box, Text, VStack, HStack, Divider, Button, View } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const VehicleInfoScreen = ({ route }) => {
     const { mostRecentStatus } = route.params;
@@ -23,6 +24,7 @@ const VehicleInfoScreen = ({ route }) => {
         'DTA payée?': mostRecentStatus.droit_timbre > 0 ? 'Oui' : 'Non',
         'Validité de DTA': mostRecentStatus.datedexpiration,
       };
+    const navigation = useNavigation();
   return (
     <View>
     <Box flex={1} bg="#D3D3D3" h={hp('100%')}>
