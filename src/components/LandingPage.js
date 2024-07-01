@@ -33,7 +33,7 @@ const WelcomePage = ({ navigation }) => {
           </VStack>
         </Center>
         <Box style={styles.buttonContainer} p={4} bg="white">
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('InputChasisNumber')}>
+          <Button style={styles.button} size="lg" colorScheme="#1CA7AE" _text={{ fontWeight: 'bold' }}  onPress={() => navigation.navigate('InputChasisNumber')}>
             <HStack alignItems="center" w={"full"} justifyContent={"space-between"}>
               <Box flex={8} alignItems="flex-start">
                 <Image

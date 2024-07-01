@@ -50,7 +50,7 @@ const InputChasisNumberPage = () => {
             {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
           </Box>
           <Box style={styles.buttonContainer} px={4}>
-          <Button style={styles.button} size="lg" colorScheme="teal" _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
+          <Button style={styles.button} size="lg" colorScheme="#1CA7AE" _text={{ fontWeight: 'bold' }}  onPress={handleSubmit}>
             <Text style={styles.buttonText}>Suivant</Text>
           </Button>
         </Box>
