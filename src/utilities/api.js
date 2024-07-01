@@ -1,16 +1,18 @@
-// utils/api.js
 import axios from 'axios';
 
 export const fetchVehicleStatus = async (data) => {
   try {
-    console.log('Sending request with data:', JSON.stringify(data));
+    const { numeroDeChassis, attestation, numeroDImmatriculation } = data;
+
+    const url = `http://41.211.108.123:4053/apiasac/pooltpv/api/save/getStatutVehiculeEncirculationApp?numeroDeChassis=${numeroDeChassis}&attestation=${attestation}&numeroDImmatriculation=${numeroDImmatriculation}`;
+
+    console.log('Sending request to URL:', url);
 
     const response = await axios({
       method: 'get',
-      url: 'https://cors-anywhere.herokuapp.com/http://41.211.108.123:4053/apiasac/pooltpv/api/save/getStatutVehiculeEncirculationApp',
+      url: `https://cors-anywhere.herokuapp.com/${url}`,
       headers: {
         'Content-Type': 'application/json',
-        'X-Request-Payload': JSON.stringify(data), // Custom header to send the payload
       },
     });
 

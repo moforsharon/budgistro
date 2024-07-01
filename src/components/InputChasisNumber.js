@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, TextInput } from 'react-native';
+import { Image, StyleSheet, TextInput, Alert } from 'react-native';
 import { Box, Text, Button, VStack, Center, HStack } from 'native-base';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -43,11 +43,13 @@ const InputChasisNumberPage = () => {
         }
     
         try {
-          const data = [{ numeroDImmatriculation: input }];
-          navigation.navigate('Loading', { data });
-        } catch (error) {
-          Alert.alert('Error', error.message);
-        }
+            const data = input.length > 7 
+              ? { numeroDeChassis: input, attestation: null, numeroDImmatriculation: null } 
+              : { numeroDeChassis: null, attestation: null, numeroDImmatriculation: input };
+            navigation.navigate('Loading', { data });
+          } catch (error) {
+            Alert.alert('Error', error.message);
+          }
       };
   return (
     <Box flex={1} bg="white">
