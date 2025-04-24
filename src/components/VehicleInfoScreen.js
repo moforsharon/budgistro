@@ -7,6 +7,14 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 const VehicleInfoScreen = ({ route }) => {
     const { mostRecentStatus } = route.params;
+        // Ensure we have data before rendering
+        if (!mostRecentStatus) {
+          return (
+              <Box flex={1} justifyContent="center" alignItems="center">
+                  <Text>Aucune donnée disponible</Text>
+              </Box>
+          );
+      }
     const insuranceData = {
         'Numéro d\'immatriculation': mostRecentStatus.numerodimmatriculation,
         'Numéro de châssis': mostRecentStatus.numerodechassis,
@@ -25,6 +33,9 @@ const VehicleInfoScreen = ({ route }) => {
         'Validité de DTA': mostRecentStatus.datedexpiration,
       };
     const navigation = useNavigation();
+    const capitalizeWords = (str) => {
+      return str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    };
   return (
     <View>
     <Box flex={1} bg="#D3D3D3" h={hp('100%')}>
@@ -43,6 +54,9 @@ const VehicleInfoScreen = ({ route }) => {
             <Divider bg="#9F57C0" width={wp('70%')} height={'2px'}/>
           </Box>
           <Text marginLeft={wp('7%')} fontSize={"lg"} py={2} color={"#9F57C0"} fontWeight={'bold'}>Assurance</Text>
+            <Text style={{ marginLeft: wp('7%'), fontSize: 'sm', paddingBottom: 4, fontWeight: 'bold' }}>
+          <Text style={{ fontSize: 'sm', fontWeight: 'bold' }}>Compagnie:</Text> {capitalizeWords(mostRecentStatus.compagnie)}
+      </Text>
           <VStack space={2} p={4} borderColor={"#9F57C0"} borderWidth={0.5}>
             {Object.entries(insuranceData).map(([label, value], index) => (
               <Box key={index}>

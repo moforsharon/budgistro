@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, Modal, Image } from 'react-native';
 import useIosInstallPrompt from './hooks/useIosInstallPrompt';
 import useWebInstallPrompt from './hooks/useWebInstallPrompt';
 
-export const InstallPWA = () => {
+export const InstallPWA = ({ modalIsOpen, handleInstallClick, closeModal }) => {
   const [iosInstallPrompt, handleIOSInstallDeclined] = useIosInstallPrompt();
   const [webInstallPrompt, handleWebInstallDeclined, handleWebInstallAccepted] = useWebInstallPrompt();
 
@@ -13,32 +13,32 @@ export const InstallPWA = () => {
 
   return (
     <Modal
-      visible={iosInstallPrompt || webInstallPrompt}
+      visible={modalIsOpen}
       transparent={true}
       animationType="slide"
-      onRequestClose={() => { if (iosInstallPrompt) handleIOSInstallDeclined(); if (webInstallPrompt) handleWebInstallDeclined(); }}
+      onRequestClose={closeModal}
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Image
             style={styles.icon}
-            source={{ uri: '../assets/iconImage.png' }} // Replace with your actual icon path
+            source={{ uri: '../assets/Logo.png' }} // Replace with your actual icon path
           />
           <Text style={styles.title}>Installer l'application</Text>
-          <Text style={styles.text}>Install this application on your Home screen for quick and easy access when you're on the go.</Text>
+          <Text style={styles.text}>Installez cette application sur votre écran d'accueil pour un accès rapide et facile lorsque vous êtes en déplacement.</Text>
           {iosInstallPrompt && (
             <Text style={styles.instructions}>
-              Tap <Image style={styles.shareIcon} source={{ uri: '../assets/upload-100.png' }} /> then "Add to Home Screen"
+              Appuyez sur <Image style={styles.shareIcon} source={{ uri: '../assets/upload-100.png' }} /> puis sur "Ajouter à l'écran d'accueil"
             </Text>
           )}
           {webInstallPrompt && (
             <View style={styles.buttonContainer}>
-              <Button title="Install" onPress={handleWebInstallAccepted} />
-              <Button title="Close" onPress={handleWebInstallDeclined} />
+              <Button title="Installer" onPress={handleWebInstallAccepted} />
+              <Button title="Fermer" onPress={closeModal} />
             </View>
           )}
           {iosInstallPrompt && (
-            <Button backgroundColor={'#1CA7AE'} title="Close" onPress={handleIOSInstallDeclined} />
+            <Button backgroundColor={'#1CA7AE'} title="Fermer" onPress={closeModal} />
           )}
         </View>
       </View>

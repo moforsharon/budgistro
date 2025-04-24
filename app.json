@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Budgistro",
-    "slug": "Budgistro",
+    "name": "Mon Assurance TPV",
+    "slug": "Mon Assurance TPV",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconImage.png",
+    "icon": "./assets/Logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splashImage.png",
+      "image": "./assets/Logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splashImage.png",
+        "foregroundImage": "./assets/Logo.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/splashImage.png",
+      "favicon": "./assets/Logo.png",
       "bundler": "webpack",
       "build": {
         "output": "web-build"

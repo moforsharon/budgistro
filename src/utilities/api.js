@@ -4,7 +4,14 @@ export const fetchVehicleStatus = async (data) => {
   try {
     const { numeroDeChassis, attestation, numeroDImmatriculation } = data;
 
-    const url = `https://proxy-server-rouge-eta.vercel.app/api/proxy??numeroDeChassis=${numeroDeChassis}&attestation=${attestation}&numeroDImmatriculation=${numeroDImmatriculation}`;
+    // Build the query parameters conditionally
+    const queryParams = [];
+    queryParams.push(`numeroDeChassis=${numeroDeChassis !== null ? numeroDeChassis : ''}`);
+    queryParams.push(`attestation=${attestation !== null ? attestation : ''}`);
+    queryParams.push(`immatric=${numeroDImmatriculation !== null ? numeroDImmatriculation : ''}`);
+
+    const queryString = queryParams.join('&');
+    const url = `https://proxy-server-rouge-eta.vercel.app/api/proxy?${queryString}`;
 
     console.log('Sending request to URL:', url);
 
